@@ -56,9 +56,12 @@
             },
             async created() {
                 try {
-                    const response = await axios.get('https://appwrite.kasoft.co.uk/v1/database/collections/653bb5217be2f68181cb/documents', {
+                    let collection="653bb5217be2f68181cb";
+                    let database="653bb50bcd9f2b052636";
+                    const response = await axios.get(`https://appwrite.kasoft.co.uk/v1/databases/${database}/collections/${collection}/documents`, {
                         headers: {
-                            'X-Appwrite-Project': '653bb473ee7f6a6074e7',
+                            'Content-Type': 'application/json',
+                            'X-Appwrite-Project':'653bb473ee7f6a6074e7',
                             'X-Appwrite-Key': '029521b6ef63e900c25ae158edfeff36da0d8c1d380b2ee1e063cf7ba6662dbcf2939627931b79dfb4631482ba8a4cac5f9f7228ca070d583780248b80bae20f0f61804c14b4488fd5d018254543431c55b7eea16a209d7267309e77930d7acecab07385f482b0e14bc0c3be5b62cd643298c68415197820d36818a75fcabae0'
                         }
                     });
