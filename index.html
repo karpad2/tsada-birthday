@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthdays Today</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-app.js"></script>
+    <!-- Firestore SDK -->
+    <script src="https://www.gstatic.com/firebasejs/8.6.8/firebase-firestore.js"></script>
+
+    <style>
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(2rem);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.5s forwards;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100 h-screen flex justify-center items-center">
+
+    <div id="app" class="bg-white p-8 rounded-xl shadow-md w-96 border border-gray-300">
+        <h1 class="text-2xl font-bold mb-6 text-center text-gray-700">People with Birthdays Today:</h1>
+        <ul v-if="people.length">
+            <li v-for="person in filteredList" class="bg-gray-200 p-4 rounded-md mb-4 fade-in-up border-l-4 border-gray-400 flex items-center" :style="{animationDelay: (0.2 * (filteredList.indexOf(person) + 1)) + 's'}">
+                {{ person.name }} <small class="text-gray-500 ml-2">({{ person.birthday }} - {{ calculateAge(person.birthday) }} years old)</small>
+            </li>
+        </ul>
+        <div v-else class="flex justify-center items-center">
+            Loading...
+        </div>
+    </div>
+
+    <script>
+        // Initialize Firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyB05qYS4JuYIe5efSTwLv2B12SB5_RSs6c",
+            authDomain: "fluff-c45de.firebaseapp.com",
+            projectId: "fluff-c45de",
+            storageBucket: "fluff-c45de.appspot.com",
+            messagingSenderId: "445363291219",
+            appId: "1:445363291219:web:74ed3a02e14ec1dfbf72a6",
+            measurementId: "G-ERXT08HW4D"
+        };
+        firebase.initializeApp(firebaseConfig);
+
+        new Vue({
+            el: '#app',
+            data: {
+                people: [],
+                today: new Date().toISOString().slice(5, 10)  // Get only month and day
+            },
+            computed: {
+                filteredList() {
+                    return this.people.filter(person => {
+                        // Extract month and day from person's birthday
+                        const personMonthDay = person.birthday.slice(5, 10);
+                        return personMonthDay === this.today;
+                    });
+                }
+            },
+            methods: {
+                // Calculate age based on birthday
+                calculateAge(birthday) {
+                    const birthYear = parseInt(birthday.slice(0, 4));
+                    const currentYear = new Date().getFullYear();
+                    return currentYear - birthYear;
+                }
+            },
+            async created() {
+                const db = firebase.firestore();
+                const snapshot = await db.collection('birthdays').get();
+                this.people = snapshot.docs.map(doc => doc.data());
+            }
+        });
+
+        // Refresh the page every hour (3600000 milliseconds)
+        setTimeout(() => {
+            location.reload();
+        }, 3600000);
+    </script>
+
+</body>
+
+</html>
