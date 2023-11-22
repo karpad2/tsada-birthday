@@ -13,6 +13,9 @@
   "build": {
     "appId": "com.karpad2.tsada-birthday",
     "productName": "TSAda birthday",
+    "target": "nsis",
+    "arch": [
+      "x64"],
     "directories": {
       "output": "build"
     },
