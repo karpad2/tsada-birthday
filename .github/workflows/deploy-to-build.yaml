@@ -29,3 +29,6 @@ jobs:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         publish_branch: test  # Target branch to deploy to
         publish_dir: ./dist  # Directory to deploy
+    
+    - name: Build Electron
+      run: npm run ebuild  # Replace with your build command

@@ -1,13 +1,14 @@
-const { app, BrowserWindow } = require('electron');
+const { app, BrowserWindow,Menu  } = require('electron');
 const { autoUpdater } = require('electron-updater');
 
 function createWindow () {
     const win = new BrowserWindow({
-      width: 800,
-      height: 600,
+      width: 1400,
+      height: 720,
       webPreferences: {
         nodeIntegration: true
-      }
+      },
+      autoHideMenuBar: true
     });
   
     // Load your existing HTML file
@@ -24,12 +25,12 @@ function createWindow () {
   
   app.on('activate', () => {
     if (BrowserWindow.getAllWindows().length === 0) {
-      createWindow();
+      //createWindow();
     }
   });
 
 app.whenReady().then(() => {
-  createWindow();
+  //createWindow();
   autoUpdater.checkForUpdatesAndNotify();
 });
 

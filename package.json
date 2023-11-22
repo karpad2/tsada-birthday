@@ -1,6 +1,6 @@
 {
   "name": "tsada-birthday",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "private": true,
   "main": "main.js",
   "scripts": {
@@ -23,6 +23,9 @@
       "private": false
     }
   },
+  "files": [
+    "dist/**/*"
+  ],
   "dependencies": {
     "@fireworks-js/vue": "^2.10.7",
     "appwrite": "^13.0.1",
@@ -36,6 +39,7 @@
     "autoprefixer": "^10.4.16",
     "electron": "^27.1.0",
     "electron-builder": "^24.6.4",
+    "electron-vite": "^1.0.29",
     "postcss": "^8.4.31",
     "tailwindcss": "^3.3.5",
     "vite": "^4.4.11"
