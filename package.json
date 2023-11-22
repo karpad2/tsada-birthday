@@ -8,7 +8,7 @@
     "start": "electron .",
     "build": "vite build",
     "preview": "vite preview",
-    "dist": "electron-builder"
+    "ebuild": "electron-builder"
   },
   "build": {
     "appId": "com.karpad2.tsada-birthday",

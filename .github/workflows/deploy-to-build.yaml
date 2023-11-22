@@ -27,5 +27,5 @@ jobs:
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        publish_branch: build  # Target branch to deploy to
-        publish_dir: ./  # Directory to deploy
+        publish_branch: test  # Target branch to deploy to
+        publish_dir: ./dist  # Directory to deploy
