@@ -2,14 +2,31 @@
   "name": "tsada-birthday",
   "version": "0.0.0",
   "private": true,
+  "main": "main.js",
   "scripts": {
     "dev": "vite",
+    "start": "electron .",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "dist": "electron-builder"
+  },
+  "build": {
+    "appId": "com.karpad2.tsada-birthday",
+    "productName": "TSAda birthday",
+    "directories": {
+      "output": "build"
+    },
+    "publish": {
+      "provider": "github",
+      "repo": "tsada-birthday",
+      "owner": "karpad2",
+      "private": false
+    }
   },
   "dependencies": {
     "@fireworks-js/vue": "^2.10.7",
     "appwrite": "^13.0.1",
+    "electron-updater": "^6.1.4",
     "fireworks-js": "^2.10.7",
     "vue": "^3.3.4",
     "vue-router": "^4.2.5"
@@ -17,6 +34,8 @@
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.4.0",
     "autoprefixer": "^10.4.16",
+    "electron": "^27.1.0",
+    "electron-builder": "^24.6.4",
     "postcss": "^8.4.31",
     "tailwindcss": "^3.3.5",
     "vite": "^4.4.11"

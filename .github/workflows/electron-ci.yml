@@ -1,0 +1,26 @@
+name: Electron Build
+
+on:
+  push:
+    branches: [ main ]  # Trigger on push to main branch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest  # You can specify other OS as needed
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14'  # Set the Node.js version
+
+    - name: Install Dependencies
+      run: npm install
+
+    - name: Build Electron App
+      run: npm run ebuild  # Replace with your Electron build command
+
+    # Add additional steps for testing or other build requirements
