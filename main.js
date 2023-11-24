@@ -8,11 +8,18 @@ function createWindow () {
       webPreferences: {
         nodeIntegration: true
       },
-      autoHideMenuBar: true
+      autoHideMenuBar: true,
+      fullscreen: true
     });
   
     // Load your existing HTML file
     win.loadFile('./dist/index.html');
+    setTimeout(() => {
+      win.close();
+  }, 120000);
+  win.once('ready-to-show', () => {
+    win.maximize()
+})
   }
   
   app.whenReady().then(createWindow);

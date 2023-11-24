@@ -1,6 +1,6 @@
 {
   "name": "tsada-birthday",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "private": true,
   "main": "main.js",
   "scripts": {
@@ -13,9 +13,12 @@
   "build": {
     "appId": "com.karpad2.tsada-birthday",
     "productName": "TSAda birthday",
-    "target": "nsis",
-    "arch": [
-      "x64"],
+    "target":[
+      {
+      "target": "nsis",
+      "arch": [
+      
+      "ia32"]}],
     "directories": {
       "output": "build"
     },
